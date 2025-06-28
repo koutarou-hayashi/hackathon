@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Loader2, Sparkles } from "lucide-react"
+import { Loader2, Sparkles, LogOut } from "lucide-react"
 import SkillMapCanvas from "./components/skill-map-canvas"
 import SkillLabelManager from "./components/skill-label-manager"
+import AuthGuard from "./components/auth-guard"
+import { signOut, useSession } from "next-auth/react"
 
 export interface SkillLabel {
   id: string
@@ -35,7 +37,8 @@ export interface MapConfig {
   }
 }
 
-export default function SkillMapTool() {
+function SkillMapTool() {
+  const { data: session } = useSession()
   const [mapConfig, setMapConfig] = useState<MapConfig>({
     verticalAxis: {
       positive: "",
@@ -48,8 +51,8 @@ export default function SkillMapTool() {
     quadrants: {
       topRight: ["", "", "", ""],
       topLeft: ["", "", "", ""],
-      bottomRight: ["", "", "", ""],
       bottomLeft: ["", "", "", ""],
+      bottomRight: ["", "", "", ""],
     },
   })
 
@@ -57,6 +60,10 @@ export default function SkillMapTool() {
   const [activeTab, setActiveTab] = useState("map")
   const [generatePrompt, setGeneratePrompt] = useState("")
   const [isGenerating, setIsGenerating] = useState(false)
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: "/signin" })
+  }
 
   const updateAxisLabel = (axis: "vertical" | "horizontal", direction: "positive" | "negative", value: string) => {
     setMapConfig((prev) => ({
@@ -131,7 +138,25 @@ export default function SkillMapTool() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">スキルマップ作成ツール</h1>
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold">スキルマップ作成ツール</h1>
+            {session?.user && <p className="text-gray-600 mt-1">ようこそ、{session.user.name}さん</p>}
+          </div>
+          <div className="flex items-center gap-4">
+            {session?.user?.image && (
+              <img
+                src={session.user.image || "/placeholder.svg"}
+                alt="プロフィール画像"
+                className="w-8 h-8 rounded-full"
+              />
+            )}
+            <Button onClick={handleSignOut} variant="outline" size="sm">
+              <LogOut className="w-4 h-4 mr-2" />
+              サインアウト
+            </Button>
+          </div>
+        </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3">
@@ -278,5 +303,13 @@ export default function SkillMapTool() {
         </Tabs>
       </div>
     </div>
+  )
+}
+
+export default function Page() {
+  return (
+    <AuthGuard>
+      <SkillMapTool />
+    </AuthGuard>
   )
 }

@@ -7,18 +7,18 @@ export async function POST(request: Request) {
     // 現在は固定値を返す（後でAI APIに置き換え可能）
     const generatedConfig = {
       verticalAxis: {
-        positive: "高い重要度",
-        negative: "低い重要度",
+        positive: "縦軸上",
+        negative: "縦軸下",
       },
       horizontalAxis: {
-        positive: "高い習熟度",
-        negative: "低い習熟度",
+        positive: "横軸右",
+        negative: "横軸左",
       },
       quadrants: {
-        topRight: ["維持・強化", "専門性発揮", "指導・共有", "リーダーシップ"],
-        topLeft: ["優先学習", "集中投資", "短期習得", "基礎固め"],
-        bottomRight: ["現状維持", "効率化", "自動化検討", "他者移譲"],
-        bottomLeft: ["学習検討", "将来準備", "情報収集", "機会待ち"],
+        topRight: ["第一右上", "第一左上", "第一左下", "第一右下"],
+        topLeft: ["第二右上", "第二左上", "第二左下", "第二右下"],
+        bottomLeft: ["第三右上", "第三左上", "第三左下", "第三右下"],
+        bottomRight: ["第四右上", "第四左上", "第四左下", "第四右下"],
       },
     }
 

@@ -52,65 +52,161 @@ export default function SkillMapCanvas({ config, skillLabels, onUpdateSkillLabel
         <div className="absolute top-3/4 left-0 right-0 h-px bg-gray-200"></div>
 
         {/* 象限のセクションラベル */}
-        {/* 右上象限 */}
-        {config.quadrants.topRight.map((label, index) => (
-          <div
-            key={`tr-${index}`}
-            className="absolute text-xs text-gray-500 font-medium"
-            style={{
-              left: `${62.5 + (index % 2) * 25}%`,
-              top: `${12.5 + Math.floor(index / 2) * 25}%`,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {label}
-          </div>
-        ))}
+        {/* 第一象限 (topRight) */}
+        {config.quadrants.topRight.map((label, index) => {
+          let leftPos, topPos;
+          switch (index) {
+            case 0: // 右上
+              leftPos = "87.5%";
+              topPos = "12.5%";
+              break;
+            case 1: // 左上
+              leftPos = "62.5%";
+              topPos = "12.5%";
+              break;
+            case 2: // 左下
+              leftPos = "62.5%";
+              topPos = "37.5%";
+              break;
+            case 3: // 右下
+              leftPos = "87.5%";
+              topPos = "37.5%";
+              break;
+            default:
+              leftPos = "50%";
+              topPos = "50%";
+          }
+          return (
+            <div
+              key={`tr-${index}`}
+              className="absolute text-xs text-gray-500 font-medium"
+              style={{
+                left: leftPos,
+                top: topPos,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              {label}
+            </div>
+          );
+        })}
 
-        {/* 左上象限 */}
-        {config.quadrants.topLeft.map((label, index) => (
-          <div
-            key={`tl-${index}`}
-            className="absolute text-xs text-gray-500 font-medium"
-            style={{
-              left: `${37.5 - (index % 2) * 25}%`,
-              top: `${12.5 + Math.floor(index / 2) * 25}%`,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {label}
-          </div>
-        ))}
+        {/* 第二象限 (topLeft) */}
+        {config.quadrants.topLeft.map((label, index) => {
+          let leftPos, topPos;
+          switch (index) {
+            case 0: // 右上
+              leftPos = "37.5%";
+              topPos = "12.5%";
+              break;
+            case 1: // 左上
+              leftPos = "12.5%";
+              topPos = "12.5%";
+              break;
+            case 2: // 左下
+              leftPos = "12.5%";
+              topPos = "37.5%";
+              break;
+            case 3: // 右下
+              leftPos = "37.5%";
+              topPos = "37.5%";
+              break;
+            default:
+              leftPos = "50%";
+              topPos = "50%";
+          }
+          return (
+            <div
+              key={`tl-${index}`}
+              className="absolute text-xs text-gray-500 font-medium"
+              style={{
+                left: leftPos,
+                top: topPos,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              {label}
+            </div>
+          );
+        })}
 
-        {/* 右下象限 */}
-        {config.quadrants.bottomRight.map((label, index) => (
-          <div
-            key={`br-${index}`}
-            className="absolute text-xs text-gray-500 font-medium"
-            style={{
-              left: `${62.5 + (index % 2) * 25}%`,
-              top: `${87.5 - Math.floor(index / 2) * 25}%`,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {label}
-          </div>
-        ))}
+        {/* 第三象限 (bottomLeft) */}
+        {config.quadrants.bottomLeft.map((label, index) => {
+          let leftPos, topPos;
+          switch (index) {
+            case 0: // 右上
+              leftPos = "37.5%";
+              topPos = "62.5%";
+              break;
+            case 1: // 左上
+              leftPos = "12.5%";
+              topPos = "62.5%";
+              break;
+            case 2: // 左下
+              leftPos = "12.5%";
+              topPos = "87.5%";
+              break;
+            case 3: // 右下
+              leftPos = "37.5%";
+              topPos = "87.5%";
+              break;
+            default:
+              leftPos = "50%";
+              topPos = "50%";
+          }
+          return (
+            <div
+              key={`bl-${index}`}
+              className="absolute text-xs text-gray-500 font-medium"
+              style={{
+                left: leftPos,
+                top: topPos,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              {label}
+            </div>
+          );
+        })}
 
-        {/* 左下象限 */}
-        {config.quadrants.bottomLeft.map((label, index) => (
-          <div
-            key={`bl-${index}`}
-            className="absolute text-xs text-gray-500 font-medium"
-            style={{
-              left: `${37.5 - (index % 2) * 25}%`,
-              top: `${87.5 - Math.floor(index / 2) * 25}%`,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {label}
-          </div>
-        ))}
+        {/* 第四象限 (bottomRight) */}
+        {config.quadrants.bottomRight.map((label, index) => {
+          let leftPos, topPos;
+          switch (index) {
+            case 0: // 右上
+              leftPos = "87.5%";
+              topPos = "62.5%";
+              break;
+            case 1: // 左上
+              leftPos = "62.5%";
+              topPos = "62.5%";
+              break;
+            case 2: // 左下
+              leftPos = "62.5%";
+              topPos = "87.5%";
+              break;
+            case 3: // 右下
+              leftPos = "87.5%";
+              topPos = "87.5%";
+              break;
+            default:
+              leftPos = "50%";
+              topPos = "50%";
+          }
+          return (
+            <div
+              key={`br-${index}`}
+              className="absolute text-xs text-gray-500 font-medium"
+              style={{
+                left: leftPos,
+                top: topPos,
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              {label}
+            </div>
+          );
+        })}
 
         {/* スキルラベル */}
         {skillLabels.map((label) => (
