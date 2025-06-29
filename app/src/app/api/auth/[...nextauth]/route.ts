@@ -16,7 +16,7 @@ const handler = NextAuth({
       }
       return session
     },
-    async jwt({ token, account, profile }) {
+    async jwt({ token, account }) {
       // JWTトークンにユーザー情報を追加
       if (account) {
         token.accessToken = account.access_token

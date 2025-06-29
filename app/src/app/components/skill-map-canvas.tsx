@@ -14,7 +14,7 @@ interface SkillMapCanvasProps {
 export default function SkillMapCanvas({ config, skillLabels, onUpdateSkillLabel }: SkillMapCanvasProps) {
   const canvasRef = useRef<HTMLDivElement>(null)
 
-  const handleDragEnd = (id: string, event: any, info: any) => {
+  const handleDragEnd = (id: string, event: MouseEvent | TouchEvent | PointerEvent, info: { point: { x: number; y: number } }) => {
     if (!canvasRef.current) return
 
     const rect = canvasRef.current.getBoundingClientRect()

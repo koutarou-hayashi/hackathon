@@ -4,6 +4,8 @@ export async function POST(request: Request) {
   try {
     const { prompt } = await request.json()
 
+    // TODO: 後でAI APIに置き換え時にpromptを使用
+    console.log("Received prompt:", prompt)
     // 現在は固定値を返す（後でAI APIに置き換え可能）
     const generatedConfig = {
       verticalAxis: {
