@@ -1,11 +1,40 @@
-## Getting Started
+# スキルマップ作成ツール
 
-First, run the development server:
+あなたのスキルを可視化して成長を促進するインタラクティブな Web アプリケーションです。
 
-```bash
-npm run dev
+## 機能
+
+- **AI 軸・象限生成**: Vertex AI (Gemini)を使用してプロンプトからスキルマップの軸と象限を自動生成
+- **インタラクティブキャンバス**: ドラッグ&ドロップでスキルラベルを 4 象限マトリックス上に配置
+- **スキルラベル管理**: スキルの追加・編集・削除、カラーカスタマイズ
+- **Google 認証**: NextAuth.js を使用したセキュアな認証システム
+
+## プロジェクト構成
+
+```
+hackathon/
+├── app/          # Next.js アプリケーション
+├── infra/        # Terraform インフラ定義
+├── docs/         # ドキュメント
+└── README.md     # このファイル
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ローカル開発
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**ローカル開発環境のセットアップについては、[app/README.md](./app/README.md) を参照してください。**
+
+app ディレクトリの README には以下の詳細な手順が記載されています：
+
+- 開発環境の前提条件
+- Google Cloud CLI の設定方法
+- 認証設定手順
+- 環境変数の設定
+- トラブルシューティング
+
+## インフラ
+
+インフラストラクチャの構築については `infra/` ディレクトリを参照してください（現在は開発中）。
+
+## 開発チーム
+
+新しい開発者がプロジェクトに参加する場合は、[app/README.md](./app/README.md) の「開発チーム向け情報」セクションを確認してください。
