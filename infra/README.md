@@ -1,4 +1,43 @@
-# デプロイ手順
+# Infrastructure
+
+このディレクトリには、Skill Map アプリケーションのインフラストラクチャ構成が含まれています。
+
+## 📁 フォルダ構成
+
+```
+infra/
+├── README.md                      # このファイル
+├── architecture.drawio            # システム構成図（draw.io形式）
+├── main.tf                        # Terraformメイン設定
+├── variables.tf                   # Terraform変数定義
+├── outputs.tf                     # Terraform出力定義
+├── cloud_run.tf                   # Cloud Runサービス設定
+├── infrastructure.tf              # 基盤リソース（APIs、IAM、Firestore等）
+├── terraform.tfvars.example       # 環境変数テンプレート
+├── terraform.tfvars               # 実際の環境変数（Gitignore対象）
+└── .terraform/                    # Terraform実行時ファイル（Gitignore対象）
+```
+
+## 🏗️ システム構成
+
+![システム構成図](./architecture.drawio)
+
+### 主要コンポーネント
+
+- **Cloud Run**: Next.js アプリケーションのホスティング
+- **Artifact Registry**: Docker イメージの保存
+- **Firestore**: ユーザーデータとスキルマップデータの保存
+- **Cloud Build**: CI/CD パイプライン
+- **Vertex AI**: AI によるスキル分析機能
+- **OAuth 2.0**: Google 認証
+
+### ネットワーク・セキュリティ
+
+- すべてのサービス間通信は HTTPS
+- サービスアカウントによる最小権限アクセス
+- Firestore への認証済みアクセスのみ
+
+## 🚀 デプロイ手順
 
 ## 前提条件
 
