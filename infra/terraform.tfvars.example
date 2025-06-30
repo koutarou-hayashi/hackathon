@@ -1,0 +1,12 @@
+# Example values - copy this to terraform.tfvars and fill in your actual values
+project_id = "your-gcp-project-id"
+region     = "asia-northeast1"
+zone       = "asia-northeast1-a"
+app_name   = "skill-map"
+
+# NextAuth Configuration
+nextauth_secret = "your-nextauth-secret-here"
+
+# Google OAuth Configuration (from your .env file)
+google_client_id     = "your-google-client-id"
+google_client_secret = "your-google-client-secret"
